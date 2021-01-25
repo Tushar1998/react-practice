@@ -4,11 +4,6 @@ import { counterTypes } from "../redux/constants/counterTypes.action";
 import { counterGenerators } from "../redux/actions/counterGenerators.action";
 
 const CounterComponent = (props) => {
-	// without using mapDispatchtoProps
-	// const increment = () => {
-	//   store.dispatch({ type: counterTypes.INCREMENT });
-	// };
-
 	return (
 		<div className="border border-grey-500 shadow-lg w-96 mt-4 m-auto rounded-md text-center ">
 			<p className="m-1 p-2 text-2xl">Counter : {props.count} </p>
@@ -29,17 +24,15 @@ const CounterComponent = (props) => {
 };
 
 const mapStateToProps = (state) => {
-	// console.log(state);
 	return {
 		count: state.counterReducer.count,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
-	console.log(counterGenerators(counterTypes.INCREMENT));
 	return {
-		increment: () => dispatch({ type: counterTypes.INCREMENT }),
-		decrement: () => dispatch({ type: counterTypes.DECREMENT }),
+		increment: () => dispatch(counterGenerators(counterTypes.INCREMENT)),
+		decrement: () => dispatch(counterGenerators(counterTypes.DECREMENT)),
 	};
 };
 
